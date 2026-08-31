@@ -376,7 +376,8 @@ async function viewDash(){
     <div class="kicker">Instructor dashboard</div>
     <h1>Slips, tallied</h1>
     <div class="bar">
-      ${Object.keys(SECTIONS).map(s => `<button class="tab ${s===D.sec?'sel':''}" data-s="${s}">${s} · ${SECTIONS[s].label.split(" ")[0]}</button>`).join("")}
+      ${(() => { const cnt = {}; for (const r of latestRows()) cnt[r.sec] = (cnt[r.sec]||0) + 1;
+         return Object.keys(SECTIONS).map(s => `<button class="tab ${s===D.sec?'sel':''}" data-s="${s}">${s} · ${SECTIONS[s].label.split(" ")[0]}${cnt[s] ? ` (${cnt[s]})` : ""}</button>`).join(""); })()}
       <span style="flex:1"></span>
       <button class="tiny goldbtn" id="sync">Sync</button>
       <span class="prog" id="prog"></span>
@@ -405,8 +406,11 @@ async function viewDash(){
 async function sync(){
   $("#prog").textContent = "loading…";
   try { D.rows = await apiList(); } catch(e){ $("#prog").textContent = "couldn't reach the backend — check ENDPOINT and try again"; return; }
-  $("#prog").textContent = D.rows.length + " slips loaded";
-  drawMatrix();
+  const cnt = {}; for (const r of latestRows()) cnt[r.sec] = (cnt[r.sec]||0) + 1;
+  const total = Object.values(cnt).reduce((a,b) => a+b, 0);
+  if (total && !cnt[D.sec]) D.sec = Object.keys(cnt).sort((a,b) => cnt[b]-cnt[a])[0];
+  await viewDash();
+  $("#prog").textContent = total + " slips loaded" + (total ? ` — showing ${D.sec}` : " — nothing submitted yet (or ENDPOINT is not set)");
 }
 function roster(){
   const rows = {};
