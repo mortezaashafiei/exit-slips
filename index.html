@@ -380,6 +380,7 @@ async function viewDash(){
          return Object.keys(SECTIONS).map(s => `<button class="tab ${s===D.sec?'sel':''}" data-s="${s}">${s} · ${SECTIONS[s].label.split(" ")[0]}${cnt[s] ? ` (${cnt[s]})` : ""}</button>`).join(""); })()}
       <span style="flex:1"></span>
       <button class="tiny goldbtn" id="sync">Sync</button>
+      <span class="pill" title="${esc(ENDPOINT || "none")}">${ENDPOINT ? "backend: …" + esc(ENDPOINT.slice(-14)) : "NO BACKEND SET"}</span>
       <span class="prog" id="prog"></span>
     </div>
     <div id="matrix"><p class="note">Press Sync to load submissions from your backend.</p></div>
@@ -405,7 +406,13 @@ async function viewDash(){
 }
 async function sync(){
   $("#prog").textContent = "loading…";
-  try { D.rows = await apiList(); } catch(e){ $("#prog").textContent = "couldn't reach the backend — check ENDPOINT and try again"; return; }
+  try { D.rows = await apiList(); }
+  catch(e){
+    $("#prog").textContent = !ENDPOINT
+      ? "This file has no backend address — you're running an OLD index.html. Upload the newest one to GitHub."
+      : "Backend unreachable: " + (e && e.message ? e.message : e) + " — endpoint ends with …" + ENDPOINT.slice(-14);
+    return;
+  }
   const cnt = {}; for (const r of latestRows()) cnt[r.sec] = (cnt[r.sec]||0) + 1;
   const total = Object.values(cnt).reduce((a,b) => a+b, 0);
   if (total && !cnt[D.sec]) D.sec = Object.keys(cnt).sort((a,b) => cnt[b]-cnt[a])[0];
