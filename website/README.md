@@ -33,6 +33,23 @@ It is a plain static site: HTML, one stylesheet, one small script. There is no b
   and replace `assets/docs/Morteza-Shafiei-CV.pdf`.
 - To change the photo, export a 4:5 crop as `portrait-480.(webp|jpg)` and `portrait-320.(webp|jpg)` and strip metadata.
 
+## Content sources (keep figures and numbers verifiable)
+
+Every figure and number on the site comes from one of these documents. Check the source before changing a figure.
+
+| Site content | Source |
+| --- | --- |
+| Figure 1 (stress zones → 1D compression / ball milling / dispersion cup), Geo-Congress summary, "62–72 Ma", "50 MPa" | Shafiei, Jaffé, Westgate & DeGroot, *Effect of particle degradation mechanisms on glauconite sand behavior*, submitted to ASCE Geo-Congress 2027 (Fig. 1 and text) |
+| Figure 2 (CPTu configurations and outcomes), CGJ 2026 summary | Westgate, Senanayake, Shafiei & DeGroot (2026), *Can. Geotech. J.* 63: 1–8, doi:10.1139/cgj-2026-0117 (published abstract) |
+| Figure 3 (chamber Ø400 × 1000 mm, 560/300 mm, SG/PTS at 150 mm, 43.2 kPa), CGJ 2023 summary, "1 h–90 d" | Fakharian, Shafiei & Hafezan (2023), *Can. Geotech. J.* 60(4): 488–503, doi:10.1139/cgj-2021-0686 (abstract and Fig. 1) |
+| Particle-shape card, "3,000+ particles", Granular Matter summary | Kaviani-Hamedani et al. (2024), *Granular Matter* 26: 13, doi:10.1007/s10035-023-01376-1 |
+| About text, ARROW news | ARROW Student Spotlight (arrowosw.org, Nov 10, 2025) and ARROW 2025 Annual Report, Student Highlights |
+| Tufts poster | Tufts 4th Annual Symposium in Geotechnical Engineering program, Feb 7, 2026 |
+
+Numbers from the earlier site that could not be checked against these sources were removed (14 m → 23.5 m penetration,
+50–80 % thrust reduction, 48 mm reducer, 4 × 3 mm jets at 6–7 L/min, +287 % / +28.8 % setup, 21 load tests). Add them
+back only after confirming them in the full papers.
+
 ## Deploying (Vercel)
 
 The site is deployed as a Vercel project with this folder as its root. Any of these works:
