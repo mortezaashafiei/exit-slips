@@ -25,8 +25,12 @@ It is a plain static site: HTML, one stylesheet, one small script. There is no b
 - Edit the text directly in `index.html` / `cv.html`. Publications, education and skills are ordinary HTML lists.
 - **Do not add `style="..."` attributes, `<style>` blocks, `onclick=` handlers or new inline `<script>` code.**
   The security policy blocks them on purpose. Put styles in `assets/css/site.css` and scripts in `assets/js/site.js`.
-- The single inline script in each page's `<head>` (`document.documentElement.classList.add('js')`) is allowed by
-  its SHA-256 hash in `vercel.json`. If you ever change that line, update the hash in the `Content-Security-Policy` header.
+- The single inline script in each page's `<head>` (it adds the `js` class and applies a visitor's saved dark-theme choice
+  before the page draws) is allowed by its SHA-256 hash in `vercel.json`. If you ever change that line, update the hash in
+  the `Content-Security-Policy` header: `printf '%s' "<script text>" | openssl dgst -sha256 -binary | openssl base64 -A`.
+- **Theme:** the site is light (white-blue) by default for everyone. The sun/moon button in the header switches to dark;
+  the choice is stored only in that visitor's browser (`localStorage` key `theme`). Colors live as CSS variables at the
+  top of `site.css` (`:root` for light, `:root[data-theme="dark"]` for dark).
 - Email addresses are written as `data-u` / `data-d` attributes and assembled by `site.js`, so simple spam bots
   cannot harvest them from the page source.
 - When you change the CV, regenerate the PDF: open `/cv` in Chrome → Print → Save as PDF (Letter, default margins),

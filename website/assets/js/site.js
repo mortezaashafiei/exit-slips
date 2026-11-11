@@ -154,7 +154,41 @@
     }
   }
 
-  /* 6. Print button on the CV page. */
+  /* 6. Light / dark theme. Light is the default; a visitor's choice is kept in their own browser only. */
+  function wireTheme() {
+    var button = doc.querySelector(".theme-toggle");
+    if (!button) return;
+    var metaTheme = doc.querySelector('meta[name="theme-color"]');
+
+    function isDark() {
+      return root.getAttribute("data-theme") === "dark";
+    }
+
+    function sync() {
+      var dark = isDark();
+      button.setAttribute("aria-pressed", dark ? "true" : "false");
+      if (metaTheme) metaTheme.setAttribute("content", dark ? "#0a111d" : "#f6f9fd");
+    }
+
+    button.hidden = false;
+    button.addEventListener("click", function () {
+      var next = isDark() ? "light" : "dark";
+      if (next === "dark") {
+        root.setAttribute("data-theme", "dark");
+      } else {
+        root.removeAttribute("data-theme");
+      }
+      try {
+        window.localStorage.setItem("theme", next);
+      } catch (e) {
+        /* storage unavailable (private mode, blocked): the choice simply is not remembered */
+      }
+      sync();
+    });
+    sync();
+  }
+
+  /* 7. Print button on the CV page. */
   function wirePrint() {
     var buttons = doc.querySelectorAll("[data-print]");
     for (var i = 0; i < buttons.length; i++) {
@@ -171,6 +205,7 @@
     wireScrollSpy();
     wireFigures();
     wireCopy();
+    wireTheme();
     wirePrint();
   }
 

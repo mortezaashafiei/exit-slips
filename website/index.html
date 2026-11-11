@@ -7,8 +7,8 @@
   <meta name="description" content="Morteza Shafiei is a Ph.D. candidate and university instructor in geotechnical engineering at UMass Amherst and an ARROW offshore wind student researcher. He studies how crushable glauconite sands degrade during foundation installation, in-situ testing (CPTu), pile setup, and particle shape.">
   <meta name="author" content="Morteza Shafiei">
   <meta name="referrer" content="no-referrer">
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#0b1a2e">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f6f9fd">
   <meta name="format-detection" content="telephone=no">
   <link rel="canonical" href="https://www.mortezashafiei.com/">
 
@@ -33,7 +33,7 @@
   <link rel="preload" href="/assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/site.css">
-  <script>document.documentElement.classList.add('js')</script>
+  <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}</script>
   <script src="/assets/js/site.js" defer></script>
 
   <script type="application/ld+json">
@@ -103,6 +103,8 @@
     <symbol id="i-standard" viewBox="0 0 24 24"><path d="M9 4h6a1 1 0 0 1 1 1v1H8V5a1 1 0 0 1 1-1z"/><path d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><path d="m8.5 13.5 2.3 2.3 4.7-4.8"/></symbol>
     <symbol id="i-lab" viewBox="0 0 24 24"><path d="M9 3h6M10 3v6.2L4.8 18a2 2 0 0 0 1.7 3h11a2 2 0 0 0 1.7-3L14 9.2V3"/><path d="M7.5 15h9"/></symbol>
     <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6"/><path d="m15 15 5 5"/></symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></symbol>
+    <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6 6 6M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
     <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
@@ -145,11 +147,6 @@
         </span>
       </a>
 
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>
-        <span class="visually-hidden">Menu</span>
-        <svg class="icon icon-open" aria-hidden="true"><use href="#i-menu"/></svg>
-        <svg class="icon icon-close" aria-hidden="true"><use href="#i-close"/></svg>
-      </button>
 
       <nav id="site-nav" class="site-nav" aria-label="Primary">
         <ul>
@@ -162,6 +159,18 @@
           <li><a class="nav-cta" href="/cv">CV</a></li>
         </ul>
       </nav>
+
+      <div class="header-tools">
+        <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Dark theme" title="Switch light / dark theme" hidden>
+          <svg class="icon icon-moon" aria-hidden="true"><use href="#i-moon"/></svg>
+          <svg class="icon icon-sun" aria-hidden="true"><use href="#i-sun"/></svg>
+        </button>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" hidden>
+          <span class="visually-hidden">Menu</span>
+          <svg class="icon icon-open" aria-hidden="true"><use href="#i-menu"/></svg>
+          <svg class="icon icon-close" aria-hidden="true"><use href="#i-close"/></svg>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -190,10 +199,10 @@
           </a>
 
           <div class="hero-actions">
-            <a class="btn btn-light" href="/assets/docs/Morteza-Shafiei-CV.pdf" type="application/pdf">
+            <a class="btn btn-main" href="/assets/docs/Morteza-Shafiei-CV.pdf" type="application/pdf">
               <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Download CV
             </a>
-            <a class="btn btn-ghost-dark" href="#contact" data-u="mortezaashafiei" data-d="gmail.com" data-keep-label>
+            <a class="btn btn-alt" href="#contact" data-u="mortezaashafiei" data-d="gmail.com" data-keep-label>
               <svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg>Email me
             </a>
           </div>
@@ -1358,8 +1367,8 @@
             <p>Education, publications, presentations, appointments, and technical skills in one document.</p>
           </div>
           <div class="actions">
-            <a class="btn btn-light" href="/assets/docs/Morteza-Shafiei-CV.pdf" type="application/pdf"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Download PDF</a>
-            <a class="btn btn-ghost-dark" href="/cv"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg>View online</a>
+            <a class="btn btn-main" href="/assets/docs/Morteza-Shafiei-CV.pdf" type="application/pdf"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>Download PDF</a>
+            <a class="btn btn-alt" href="/cv"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg>View online</a>
           </div>
         </div>
       </div>
