@@ -1,0 +1,6 @@
+# Security contact for www.mortezashafiei.com (RFC 9116).
+# This is a static personal website: it has no logins, forms, cookies or databases.
+Contact: https://www.mortezashafiei.com/#contact
+Expires: 2027-11-01T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://www.mortezashafiei.com/.well-known/security.txt
