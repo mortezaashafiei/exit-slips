@@ -167,7 +167,7 @@
     function sync() {
       var dark = isDark();
       button.setAttribute("aria-pressed", dark ? "true" : "false");
-      if (metaTheme) metaTheme.setAttribute("content", dark ? "#0a111d" : "#f6f9fd");
+      if (metaTheme) metaTheme.setAttribute("content", dark ? "#0a111d" : "#fbfcfe");
     }
 
     button.hidden = false;
