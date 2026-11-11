@@ -60,6 +60,11 @@ The site is deployed as a Vercel project with this folder as its root. Any of th
 
 `vercel.json` is picked up automatically; no other settings are needed.
 
+3. **Without a Git connection (API deployment):** upload only `vercel.json` and set the project's build command to fetch an
+   exact, already-reviewed commit, so nothing unreviewed can be published:
+   `git init -q s&&git -C s fetch -q --depth 1 https://github.com/mortezaashafiei/exit-slips <COMMIT_SHA>&&git -C s checkout -q FETCH_HEAD&&mv s/website dist&&rm dist/README.md dist/.vercelignore dist/vercel.json`
+   with output directory `dist` and framework "Other".
+
 ## Connecting the domain
 
 In Vercel → Project → Settings → Domains, add **both** `www.mortezashafiei.com` (primary) and `mortezashafiei.com`
